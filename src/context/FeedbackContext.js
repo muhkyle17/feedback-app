@@ -22,11 +22,26 @@ export const FeedbackProvider = ({ children }) => {
     },
   ])
 
+  // Add feedback
+  const [feedbackEdit, setFeedbackEdit] = useState({
+    item: {},
+    edit: false,
+  })
+
   const addFeedback = (newFeedback) => {
     newFeedback.id = uuidv4()
     setFeedback([newFeedback, ...feedback]) // This adds the newFeedback.id to the state including the feedback that's already in the state using the spread operator
   }
 
+  // Set item to be updated
+  const editFeedback = (item) => {
+    setFeedbackEdit({
+      item,
+      edit: true,
+    })
+  }
+
+  // Delete feedback
   const deleteFeedback = (id) => {
     if (window.confirm('Are you sure you want to delete?')) {
       setFeedback(feedback.filter((item) => item.id !== id))
@@ -39,6 +54,7 @@ export const FeedbackProvider = ({ children }) => {
         feedback: feedback,
         deleteFeedback,
         addFeedback,
+        editFeedback,
       }}
     >
       {children}
