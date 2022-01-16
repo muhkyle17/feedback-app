@@ -54,7 +54,8 @@ export const FeedbackProvider = ({ children }) => {
         feedback: feedback,
         deleteFeedback,
         addFeedback,
-        editFeedback,
+        editFeedback, // function to edit
+        feedbackEdit, // value to be edited
       }}
     >
       {children}
