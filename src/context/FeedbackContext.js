@@ -33,6 +33,13 @@ export const FeedbackProvider = ({ children }) => {
     setFeedback([newFeedback, ...feedback]) // This adds the newFeedback.id to the state including the feedback that's already in the state using the spread operator
   }
 
+  // Update feedbackItem
+  const updateFeedback = (id, updItem) => {
+    setFeedback(
+      feedback.map((item) => (item.id === id ? { ...item, ...updItem } : item))
+    )
+  }
+
   // Set item to be updated
   const editFeedback = (item) => {
     setFeedbackEdit({
@@ -52,10 +59,11 @@ export const FeedbackProvider = ({ children }) => {
     <FeedbackContext.Provider
       value={{
         feedback: feedback,
+        feedbackEdit, // value to be edited
         deleteFeedback,
         addFeedback,
         editFeedback, // function to edit
-        feedbackEdit, // value to be edited
+        updateFeedback,
       }}
     >
       {children}
